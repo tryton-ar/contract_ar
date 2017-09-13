@@ -28,10 +28,15 @@ class ContractConsumption:
             invoice.set_pyafipws_concept()
             if invoice.pyafipws_concept in ['2', '3']:
                 for line in invoice.lines:
-                    start_dates.append(line.origin.start_date)
-                    end_dates.append(line.origin.end_date)
-                invoice.pyafipws_billing_start_date = start_dates[0]
-                invoice.pyafipws_billing_end_date = end_dates[-1]
+                    if line.origin and line.origin.__name__ == 'contract.consumption':
+                        start_dates.append(line.origin.start_date)
+                        end_dates.append(line.origin.end_date)
+
+                if start_dates != [] or end_dates != []:
+                    invoice.pyafipws_billing_start_date = start_dates[0]
+                    invoice.pyafipws_billing_end_date = end_dates[-1]
+                else:
+                    invoice.set_pyafipws_billing_dates()
             invoice.save()
         return invoices
 
