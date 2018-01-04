@@ -42,8 +42,9 @@ class ContractConsumption:
         pos = Config(1).pos
         if not pos:
             cls.raise_user_error('missing_pos')
-
-        if invoice.pos is None:
+        if hasattr(invoice, 'pos') is False:
+            invoice.pos = pos
+        elif invoice.pos is None:
             invoice.pos = pos
         invoice._set_invoice_type_sequence()
         return invoice
