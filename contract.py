@@ -51,5 +51,5 @@ class ContractConsumption:
             invoice.pos = pos
         elif invoice.pos is None:
             invoice.pos = pos
-        invoice._set_invoice_type_sequence()
+        invoice.invoice_type = invoice.on_change_with_invoice_type()
         return invoice
