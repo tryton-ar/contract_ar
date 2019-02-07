@@ -7,9 +7,8 @@ from trytond.pool import Pool, PoolMeta
 __all__ = ['ContractConsumption']
 
 
-class ContractConsumption:
+class ContractConsumption(metaclass=PoolMeta):
     __name__ = 'contract.consumption'
-    __metaclass__ = PoolMeta
 
     @classmethod
     def __setup__(cls):

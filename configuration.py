@@ -13,9 +13,8 @@ pos = fields.Many2One('account.pos', 'Point Of Sales',
     help="The default point of sales for new invoices.")
 
 
-class Configuration:
+class Configuration(metaclass=PoolMeta):
     __name__ = 'contract.configuration'
-    __metaclass__ = PoolMeta
 
     pos = fields.MultiValue(pos)
 
