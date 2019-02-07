@@ -28,7 +28,8 @@ class ContractConsumption:
             invoice.set_pyafipws_concept()
             if invoice.pyafipws_concept in ['2', '3']:
                 for line in invoice.lines:
-                    if line.origin and line.origin.__name__ == 'contract.consumption':
+                    if (line.origin and
+                            line.origin.__name__ == 'contract.consumption'):
                         start_dates.append(line.origin.start_date)
                         end_dates.append(line.origin.end_date)
 
